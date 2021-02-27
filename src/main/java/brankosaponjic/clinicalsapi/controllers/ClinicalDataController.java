@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 @RestController
 @RequestMapping("/api/v1")
 public class ClinicalDataController {
@@ -31,6 +34,7 @@ public class ClinicalDataController {
         clinicalData.setComponentName(request.getComponentName());
         clinicalData.setComponentValue(request.getComponentValue());
         clinicalData.setPatient(patient);
+        clinicalData.setMeasuredDateTime(new Timestamp(new Date().getTime()));
         return clinicalDataRepository.save(clinicalData);
     }
 }

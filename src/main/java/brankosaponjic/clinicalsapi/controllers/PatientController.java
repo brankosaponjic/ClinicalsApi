@@ -6,10 +6,8 @@ import brankosaponjic.clinicalsapi.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.sql.Timestamp;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -42,7 +40,7 @@ public class PatientController {
     public Patient analyze(@PathVariable("id") int id) {
         Patient patient = patientRepository.findById(id).get();
         List<ClinicalData> clinicalData = patient.getClinicalData();
-        ArrayList<ClinicalData> duplicateClinicalData = new ArrayList<>();
+        List<ClinicalData> duplicateClinicalData = new ArrayList<>(clinicalData);
         for (ClinicalData eachEntry : duplicateClinicalData) {
 
             if (filters.containsKey(eachEntry.getComponentName())) {
@@ -60,10 +58,12 @@ public class PatientController {
                     ClinicalData bmiData = new ClinicalData();
                     bmiData.setComponentName("bmi");
                     bmiData.setComponentValue(Float.toString(bmi));
+                    bmiData.setMeasuredDateTime(new Timestamp(new Date().getTime()));
                     clinicalData.add(bmiData);
                 }
             }
         }
+        filters.clear();
         return patient;
     }
 }

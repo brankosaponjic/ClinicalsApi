@@ -1,0 +1,6 @@
+{
+  "componentName":"hw",
+  "componentValue":"6.2/220",
+  "patientId": 5,
+  "measuredDateTime": "{{currentDate}}"
+}

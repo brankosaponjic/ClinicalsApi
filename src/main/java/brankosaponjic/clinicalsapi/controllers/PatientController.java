@@ -11,6 +11,7 @@ import java.util.*;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin
 public class PatientController {
 
     private final PatientRepository patientRepository;

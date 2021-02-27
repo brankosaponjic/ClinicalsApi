@@ -6,16 +6,14 @@ import brankosaponjic.clinicalsapi.model.Patient;
 import brankosaponjic.clinicalsapi.repositories.ClinicalDataRepository;
 import brankosaponjic.clinicalsapi.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1")
+@CrossOrigin
 public class ClinicalDataController {
 
     private final ClinicalDataRepository clinicalDataRepository;

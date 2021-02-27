@@ -7,13 +7,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
 public class PatientController {
 
     private final PatientRepository patientRepository;
+    Map<String, String> filters = new HashMap<>();
 
     @Autowired
     public PatientController(PatientRepository patientRepository) {
@@ -41,6 +44,14 @@ public class PatientController {
         List<ClinicalData> clinicalData = patient.getClinicalData();
         ArrayList<ClinicalData> duplicateClinicalData = new ArrayList<>();
         for (ClinicalData eachEntry : duplicateClinicalData) {
+
+            if (filters.containsKey(eachEntry.getComponentName())) {
+                clinicalData.remove(eachEntry);
+                continue;
+            } else {
+                filters.put(eachEntry.getComponentName(), null);
+            }
+
             if (eachEntry.getComponentName().equals("hw")) {
                 String[] heightAndWeight = eachEntry.getComponentValue().split("/");
                 if (heightAndWeight != null && heightAndWeight.length>1) {

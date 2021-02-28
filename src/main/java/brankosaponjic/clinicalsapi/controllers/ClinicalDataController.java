@@ -8,7 +8,6 @@ import brankosaponjic.clinicalsapi.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
 import java.util.Date;
 
 @RestController
@@ -32,7 +31,7 @@ public class ClinicalDataController {
         clinicalData.setComponentName(request.getComponentName());
         clinicalData.setComponentValue(request.getComponentValue());
         clinicalData.setPatient(patient);
-        clinicalData.setMeasuredDateTime(new Timestamp(new Date().getTime()));
+        clinicalData.setMeasuredDateTime(new Date());
         return clinicalDataRepository.save(clinicalData);
     }
 }

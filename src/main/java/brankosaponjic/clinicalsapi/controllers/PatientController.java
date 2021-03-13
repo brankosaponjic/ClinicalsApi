@@ -6,7 +6,10 @@ import brankosaponjic.clinicalsapi.repositories.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -58,7 +61,6 @@ public class PatientController {
                     ClinicalData bmiData = new ClinicalData();
                     bmiData.setComponentName("bmi");
                     bmiData.setComponentValue(Float.toString(bmi));
-                    bmiData.setMeasuredDateTime(new Date());
                     clinicalData.add(bmiData);
                 }
             }
